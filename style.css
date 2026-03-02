@@ -1,72 +1,106 @@
-body {
-  margin: 0;
-  overflow: hidden;
-  font-family: Arial;
+body{
+  margin:0;
+  overflow:hidden;
+  font-family:Arial;
+  background:#87ceeb;
 }
 
 /* MENU */
-#menu {
-  height: 100vh;
-  background: linear-gradient(#4ec0ff, #ffffff);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+#menu{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:linear-gradient(#2c3e50,#34495e);
+  color:white;
 }
 
-.player {
-  width: 80px;
-  height: 120px;
-  background: orange;
-  border-radius: 10px;
+.player{
+  width:60px;
+  height:100px;
+  background:orange;
+  border-radius:10px;
+  position:absolute;
+  bottom:120px;
 }
 
-/* Embaixadinha */
-.idle {
-  animation: embaixadinha 0.6s infinite alternate;
+.idle{
+  position:relative;
+  animation:embaixadinha 0.5s infinite alternate;
 }
 
-@keyframes embaixadinha {
-  from { transform: translateY(0px); }
-  to { transform: translateY(-20px); }
+@keyframes embaixadinha{
+  from{transform:translateY(0);}
+  to{transform:translateY(-20px);}
 }
 
-button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  font-size: 18px;
-  cursor: pointer;
+.tap{
+  position:absolute;
+  bottom:50px;
+  font-size:24px;
+  animation:piscar 1s infinite;
+}
+
+@keyframes piscar{
+  0%{opacity:1;}
+  50%{opacity:0.4;}
+  100%{opacity:1;}
 }
 
 /* GAME */
-.hidden {
-  display: none;
+
+.hidden{
+  display:none;
 }
 
-#game {
-  height: 100vh;
-  background: repeating-linear-gradient(
+#game{
+  height:100vh;
+  background:linear-gradient(#87ceeb,#ccc);
+  position:relative;
+  overflow:hidden;
+}
+
+/* Trilhos fake */
+#game::before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:200%;
+  background:repeating-linear-gradient(
     to bottom,
     #555 0px,
     #555 40px,
     #777 40px,
     #777 80px
   );
-  position: relative;
-  overflow: hidden;
+  animation:moveTrack 0.5s linear infinite;
 }
 
-.run {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+@keyframes moveTrack{
+  from{transform:translateY(0);}
+  to{transform:translateY(80px);}
 }
 
-#score {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 20px;
-  color: white;
+#score{
+  position:absolute;
+  top:20px;
+  left:20px;
+  font-size:22px;
+  color:white;
+  z-index:10;
+}
+
+.run{
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.obstacle{
+  width:60px;
+  height:60px;
+  background:red;
+  position:absolute;
+  top:-60px;
 }
