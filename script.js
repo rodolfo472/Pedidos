@@ -4,10 +4,11 @@ const home = document.getElementById("home")
 
 function openSite(site){
 
-iframe.style.display="block"
 home.style.display="none"
 
-iframe.src = site
+// abre o site em nova aba do navegador
+window.open(site, "_blank")
+
 urlBar.value = site
 
 }
@@ -30,19 +31,19 @@ openSite(value)
 
 document.getElementById("reload").onclick=()=>{
 
-iframe.src=iframe.src
+location.reload()
 
 }
 
 document.getElementById("back").onclick=()=>{
 
-iframe.contentWindow.history.back()
+history.back()
 
 }
 
 document.getElementById("forward").onclick=()=>{
 
-iframe.contentWindow.history.forward()
+history.forward()
 
 }
 
