@@ -1,106 +1,97 @@
 body{
-  margin:0;
-  overflow:hidden;
-  font-family:Arial;
-  background:#87ceeb;
+margin:0;
+font-family:Arial;
+background:#0a1c3a;
+color:white;
 }
 
-/* MENU */
-
-#menu{
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  background:linear-gradient(#2c3e50,#34495e);
-  color:white;
+.browser{
+display:flex;
+flex-direction:column;
+height:100vh;
 }
 
-.player{
-  width:60px;
-  height:100px;
-  background:orange;
-  border-radius:10px;
-  position:absolute;
-  bottom:120px;
+.tabs{
+display:flex;
+background:#08152b;
+padding:5px;
 }
 
-.idle{
-  position:relative;
-  animation:embaixadinha 0.5s infinite alternate;
+.tab{
+background:#0a1c3a;
+color:white;
+border:none;
+padding:10px;
+margin-right:5px;
+cursor:pointer;
 }
 
-@keyframes embaixadinha{
-  from{transform:translateY(0);}
-  to{transform:translateY(-20px);}
+#newTab{
+background:#1c3c7a;
+color:white;
+border:none;
+padding:10px;
+cursor:pointer;
 }
 
-.tap{
-  position:absolute;
-  bottom:50px;
-  font-size:24px;
-  animation:piscar 1s infinite;
+.navbar{
+display:flex;
+padding:8px;
+background:#102a5c;
+align-items:center;
 }
 
-@keyframes piscar{
-  0%{opacity:1;}
-  50%{opacity:0.4;}
-  100%{opacity:1;}
+.navbar button{
+margin-right:5px;
+background:#1c3c7a;
+border:none;
+color:white;
+padding:6px 10px;
+cursor:pointer;
 }
 
-/* GAME */
-
-.hidden{
-  display:none;
+#url{
+flex:1;
+padding:7px;
+border:none;
+border-radius:4px;
 }
 
-#game{
-  height:100vh;
-  background:linear-gradient(#87ceeb,#ccc);
-  position:relative;
-  overflow:hidden;
+iframe{
+flex:1;
+border:none;
+display:none;
 }
 
-/* Trilhos fake */
-#game::before{
-  content:"";
-  position:absolute;
-  width:100%;
-  height:200%;
-  background:repeating-linear-gradient(
-    to bottom,
-    #555 0px,
-    #555 40px,
-    #777 40px,
-    #777 80px
-  );
-  animation:moveTrack 0.5s linear infinite;
+#home{
+text-align:center;
+margin-top:120px;
 }
 
-@keyframes moveTrack{
-  from{transform:translateY(0);}
-  to{transform:translateY(80px);}
+#home h1{
+font-size:60px;
+margin-bottom:20px;
 }
 
-#score{
-  position:absolute;
-  top:20px;
-  left:20px;
-  font-size:22px;
-  color:white;
-  z-index:10;
+#searchHome{
+width:400px;
+max-width:80%;
+padding:12px;
+border-radius:30px;
+border:none;
+font-size:16px;
 }
 
-.run{
-  left:50%;
-  transform:translateX(-50%);
+.shortcuts{
+margin-top:30px;
 }
 
-.obstacle{
-  width:60px;
-  height:60px;
-  background:red;
-  position:absolute;
-  top:-60px;
+.shortcuts button{
+margin:10px;
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#1c3c7a;
+color:white;
+cursor:pointer;
 }
