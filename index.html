@@ -6,19 +6,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{font-family:Arial;background:#f5f5f5;text-align:center}
-.card{background:white;padding:20px;border-radius:15px;margin:20px}
-.btn{padding:15px;background:#ff6f91;color:white;border:none;border-radius:10px}
-.sabores{display:flex;flex-wrap:wrap;justify-content:center}
-.sabor{margin:10px;padding:10px;border:2px solid #ddd;border-radius:10px;cursor:pointer}
-.sabor img{width:80px;border-radius:10px}
-.selected{border:2px solid #ff6f91}
+body{
+font-family:Arial;
+background:linear-gradient(180deg,#ff6f91,#ffc75f);
+text-align:center;
+color:white;
+}
+
+.container{
+background:white;
+color:black;
+margin:20px;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.btn{
+padding:15px;
+background:#ff6f91;
+color:white;
+border:none;
+border-radius:12px;
+width:100%;
+font-size:16px;
+}
+
+.sabores{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.sabor{
+margin:10px;
+padding:10px;
+border-radius:15px;
+background:#f5f5f5;
+cursor:pointer;
+transition:0.2s;
+}
+
+.sabor img{
+width:80px;
+border-radius:10px;
+}
+
+.selected{
+border:3px solid #ff6f91;
+transform:scale(1.05);
+}
 </style>
 </head>
 
 <body>
 
-<h2>Gelatinas do Rodolfo 🍧</h2>
+<h2>🍧 Gelatinas do Rodolfo</h2>
+
+<div class="container">
 
 <button class="btn" onclick="abrir()">Fazer Pedido</button>
 
@@ -37,64 +82,65 @@ body{font-family:Arial;background:#f5f5f5;text-align:center}
 </select>
 
 <br><br>
-<input id="rua" placeholder="Sua rua">
+<input id="rua" placeholder="Rua">
 
 <br><br>
 <button class="btn" onclick="enviar()">Enviar Pedido</button>
 
 </div>
 
+</div>
+
 <h3 id="msg"></h3>
 
 <script>
-
 let saborEscolhido=null;
 
 function abrir(){
-  form.style.display="block";
-  carregarSabores();
+form.style.display="block";
+carregarSabores();
 }
 
 function carregarSabores(){
-  let sabores = JSON.parse(localStorage.getItem("sabores"))||[];
+let sabores = JSON.parse(localStorage.getItem("sabores"))||[];
 
-  let div = document.getElementById("sabores");
-  div.innerHTML="";
+let div = document.getElementById("sabores");
+div.innerHTML="";
 
-  sabores.forEach(s=>{
-    let el = document.createElement("div");
-    el.className="sabor";
+sabores.forEach(s=>{
+let el = document.createElement("div");
+el.className="sabor";
 
-    el.innerHTML=`
-      <img src="${s.img}">
-      <br>${s.nome}
-    `;
+el.innerHTML = `
+<img src="${s.img}">
+<br>${s.nome}
+`;
 
-    el.onclick=()=>{
-      document.querySelectorAll(".sabor").forEach(x=>x.classList.remove("selected"));
-      el.classList.add("selected");
-      saborEscolhido=s.nome;
-    }
+el.onclick = ()=>{
+document.querySelectorAll(".sabor").forEach(x=>x.classList.remove("selected"));
+el.classList.add("selected");
+saborEscolhido = s.nome;
+};
 
-    div.appendChild(el);
-  });
+div.appendChild(el);
+});
 }
 
 function enviar(){
-  let pedidos = JSON.parse(localStorage.getItem("pedidos"))||[];
+let pedidos = JSON.parse(localStorage.getItem("pedidos"))||[];
 
-  pedidos.push({
-    nome:nome.value,
-    sabor:saborEscolhido,
-    horario:horario.value,
-    rua:rua.value
-  });
+pedidos.push({
+nome:nome.value,
+sabor:saborEscolhido,
+hora:horario.value,
+rua:rua.value
+});
 
-  localStorage.setItem("pedidos",JSON.stringify(pedidos));
+localStorage.setItem("pedidos",JSON.stringify(pedidos));
 
-  msg.innerText="Pedido feito com sucesso 🍧🔥";
+msg.innerText="✅ Pedido enviado!";
+form.style.display="none";
 }
-
 </script>
 
 </body>
